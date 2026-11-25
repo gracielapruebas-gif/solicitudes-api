@@ -1,0 +1,37 @@
+openapi: 3.0.1
+info:
+  title: Solicitudes API
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      operationId: health
+      responses:
+        '200':
+          description: El servicio está vivo
+  /whoami:
+    get:
+      operationId: whoami
+      responses:
+        '200':
+          description: Claims del token
+        '401':
+          description: Sin token
+  /solicitudes/{solicitud_id}:
+    get:
+      operationId: consultarSolicitud
+      parameters:
+        - name: solicitud_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Datos de la solicitud
+        '401':
+          description: Sin token
+        '403':
+          description: La solicitud pertenece a otro usuario
+        '404':
+          description: Solicitud no encontrada
